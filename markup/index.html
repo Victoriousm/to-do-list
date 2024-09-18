@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="normalize.css">
+ </head>
+<body>
+    <label class="heading" >
+        <h1>Список задача</h1>
+    </label>
+    <main>
+        <section class="add_exercise"> 
+            <form action="" method="POST">
+                <label for="exercise" >Новая задача</label>
+                <input class="task" type="text" name="exercise" id=" exercise" placeholder="название задача....."/>
+                <button class="add" type="button">+ Добавить</button>
+            </form>
+        </section>
+
+        <section class="content">
+            <ul class="backlog">
+                <label class="backlog_title">Бэклог</label>
+                <li>Выучить JS</li>
+                <li>Выучить React</li>
+                <li>Выучить домашку</li>
+            </ul>
+
+        
+              <ul class="process" >
+                    <label class="process_title">в процссе</label>
+                    <li>Выпить смузи</li>
+                    <li>попить воды</li>
+             </ul>
+
+             <ul class="ready">
+                <label class="ready_title">готово</label>
+                <li>Позвонить маме</li>
+                    <li>Погладить</li>
+             </ul>
+
+             <ul class="basket">
+                <label class="basket_title">Корзина</label>
+                <li>Сходить погулять</li>
+                <li>Прочитать Войну и Мир</li>
+                <button class="cancel" type="button">X Очистить</button>
+
+             </ul>
+            </section>
+    </main>
+</body>
+</html>

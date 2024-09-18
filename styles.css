@@ -23,6 +23,7 @@ h1{
 
 }
 .add_exercise{
+    display: block ;
     background-color:rgb(157, 175, 183);
     width: 300px;
     height: 60px;
@@ -31,10 +32,13 @@ h1{
     font-weight: bold;
     margin-left: 40px;
 }
-.content{
+.exercise__input-wrapper{
+    display: flex;
+}
+.tasks div{
     display: grid; /*displays section content in grid form*/
-    grid-template-columns: 20% 20% 20% 20%;
-    gap: 100px;
+    grid-template-columns: 10% 10% 10% 10%;
+    gap: 30px;
     margin-top: 20px;
 }
 
@@ -81,15 +85,16 @@ h1{
     display: inline-block; /* enables user to change width and height of label*/
     line-height: 30px;  /* enables user to change height of words in the label*/
 }
-.add{
+.add {
     background-color: rgb(104, 121, 184);
     border-radius: 5%;
     width: 100px;
     height: 30px;
     border-radius: 5px;
+    padding-left: 5px;
 }
 
-.task{
+.task_name{
     
     border-radius: 5%;
     width: 150px;
@@ -141,3 +146,23 @@ ul li{
     border-left-color:   gray;
 }
 
+#list_title{
+    padding:10px;
+    border-radius: 8px;
+    background-color: lightgray;
+    width: 150px;
+    text-align: center;
+    display: inline-block;
+    
+}
+
+#tasklist li{
+    border-left-color: lightgray;
+    
+}
+
+.tasks{
+    display: flex;
+    grid-template-columns: 10% 10% 10% 10%;
+    gap: 30px;
+}
