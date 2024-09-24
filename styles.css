@@ -146,7 +146,7 @@ ul li{
     border-left-color:   gray;
 }
 
-#list_title{
+.list_title{
     padding:10px;
     border-radius: 8px;
     background-color: lightgray;
@@ -156,8 +156,12 @@ ul li{
     
 }
 
-#tasklist li{
-    border-left-color: lightgray;
+.tasklist{
+    background-color: lightgray;
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+   text-align: center;
     
 }
 
@@ -165,4 +169,9 @@ ul li{
     display: flex;
     grid-template-columns: 10% 10% 10% 10%;
     gap: 30px;
+    margin-top: 10px;
+    width: 10;
+    padding-left: 10px;
+    
+    
 }

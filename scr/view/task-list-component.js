@@ -1,14 +1,14 @@
-import {createElement} from '../framework/render.js';
-
+import {render,createElement,RenderPosition} from '../framework/render.js';
+import TaskComponent from './task-component.js';
 
 function createTaskListComponent() {
     return (
-        `<div><ul id="tasklist">
-                <div id="list_title">Название блока</div>
-                <li>Название первой задачи</li>
-                <li>Название первой задачи</li>
-                <li>Название первой задачи</li>
-          </ul></div>`
+        `
+            <ul class="tasklist">
+            Називание блок
+            </ul>
+          
+          `
       );
 }
 
@@ -23,6 +23,14 @@ export default class TaskListComponent {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
     }
+    var a=0;
+    console.log(`I dont'know: ${this.element.className}`);
+    while (a<4) {
+    render(new TaskComponent(),this.element ,RenderPosition.BEFOREEND); 
+    a+=1;
+
+    
+}
 
 
     return this.element;

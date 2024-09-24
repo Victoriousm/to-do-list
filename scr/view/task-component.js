@@ -1,13 +1,13 @@
-import {createElement} from './render.js';
+import {createElement} from '../framework/render.js';
 
 
 function createTaskComponent() {
     return (
-        ``
+        `
+     <li class="tasks">Название задачи</li>
+        `
       );
 }
-
-
 export default class TaskComponent {
   getTemplate() {
     return createTaskComponent();
