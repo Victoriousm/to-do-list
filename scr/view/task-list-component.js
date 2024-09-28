@@ -1,21 +1,26 @@
-import {render,createElement,RenderPosition} from '../framework/render.js';
-import TaskComponent from './task-component.js';
+import {createElement} from '../framework/render.js';
 
-function createTaskListComponent() {
+
+function createTaskListComponent(status) {
+  const {status_title, label}=status;
     return (
+        `<article >
+        <h3>${label}</h3>
+        <div id="tasklist_${status_title}"></div>
+        </article>
         `
-            <ul class="tasklist">
-            Називание блок
-            </ul>
-          
-          `
       );
 }
 
 
 export default class TaskListComponent {
+  
+  constructor({task_status}){
+    this.status=task_status;
+  }
   getTemplate() {
-    return createTaskListComponent();
+    
+    return createTaskListComponent(this.status);
   }
 
 
@@ -23,14 +28,6 @@ export default class TaskListComponent {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
     }
-    var a=0;
-    console.log(`I dont'know: ${this.element.className}`);
-    while (a<4) {
-    render(new TaskComponent(),this.element ,RenderPosition.BEFOREEND); 
-    a+=1;
-
-    
-}
 
 
     return this.element;

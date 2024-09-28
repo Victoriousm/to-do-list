@@ -18,6 +18,6 @@ const RenderPosition = {
   function render(component, container, place = RenderPosition.BEFOREEND) {
   container.insertAdjacentElement(place, component.getElement());
   }
-  
+
   
   export {RenderPosition, createElement, render};
