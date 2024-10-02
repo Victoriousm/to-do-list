@@ -1,7 +1,8 @@
 import {createElement} from '../framework/render.js';
+import { AbstractComponent } from '../framework/view/abstract-component.js';
 
 
-function createFormAddTaskComponentTemplate() {
+function createFormAddTaskComponentTemplate(){
     return (
         `<form class="add_exercise" aria-label="Форма добавления задачи">
           <label for="exercise" >Новая задача</label><br>
@@ -11,21 +12,20 @@ function createFormAddTaskComponentTemplate() {
       );
 }
 
-
-export default class taskadditioncomponent {
-  getTemplate() {
+export default class FormAddTaskComponent  extends AbstractComponent{
+  get template() {
     return createFormAddTaskComponentTemplate();
   }
 
 
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
+  // get element() {
+  //   if (!this.element) {
+  //     this.element = createElement(this.getTemplate());
+  //   }
 
 
-    return this.element;
-  }
+  //   return this.element;
+  // }
 
 
   removeElement() {

@@ -3,7 +3,7 @@ const Status={
   PROCESSING: `process`,
   DONE: `ready`,
   BASKET: `basket`,
-  TRASH:`trash`
+ 
 };
 
 
@@ -13,7 +13,7 @@ const StatusLabel = {
   [Status.PROCESSING]: `В процессе`,
   [Status.DONE]: `Готово`,
   [Status.BASKET]: `Корзина`,
-  [Status.TRASH]:`Oтчистить`
+  
 };
 
 
