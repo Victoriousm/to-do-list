@@ -13,19 +13,23 @@ function createFormAddTaskComponentTemplate(){
 }
 
 export default class FormAddTaskComponent  extends AbstractComponent{
+  #handleClick=null;
+
+  #clickHandler=(evt)=>{
+    evt.preventDefault();
+    this.#handleClick();
+  }
+
+  constructor({onClick}){
+    super();
+    console.log("Feels great")
+    this.#handleClick=onClick;
+    this.element.addEventListener('submit', this.#clickHandler);
+  }
   get template() {
     return createFormAddTaskComponentTemplate();
   }
 
-
-  // get element() {
-  //   if (!this.element) {
-  //     this.element = createElement(this.getTemplate());
-  //   }
-
-
-  //   return this.element;
-  // }
 
 
   removeElement() {

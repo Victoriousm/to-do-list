@@ -5,7 +5,7 @@ import { AbstractComponent } from "../framework/view/abstract-component.js";
 function createEmptyTaskComponent(){
     return (
         `<div class="empty_task">
-        <p>No tasks under this stage</p>
+        <p>You have no tasks here</p>
         </div>`);
 }
 

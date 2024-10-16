@@ -16,17 +16,6 @@ export default class HeaderComponent extends AbstractComponent{
     return createHeaderComponentTemplate();
   }
 
-
-  // get element() {
-  //   if (!this.element) {
-  //     this.element = createElement(this.getTemplate());
-  //   }
-
-
-  //   return this.element;
-  // }
-
-
   removeElement() {
     this.element = null;
   }
