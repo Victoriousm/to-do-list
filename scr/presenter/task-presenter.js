@@ -12,7 +12,7 @@ export default class TaskPresenter{
     }
     init(task){
         this.#task=task;
-        task.id=generateIdentificationNumber();
+      //  task.id=generateIdentificationNumber();
         this.#taskComponent=new TaskComponent({task:this.#task})
         render(this.#taskComponent,this.#taskListContainer)
         

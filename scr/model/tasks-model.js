@@ -21,9 +21,25 @@ export default class TasksModel{
             status:'backlog',
             id:generateIdentificationNumber()
         };
-        this.#boardtasks.push(newTask);
+        const length=this.#boardtasks.push(newTask);
+       
         this._notifyObservers();
-        return newTask;
+        return newTask;//adds task to list
+    }
+
+    clearTasks(){
+        this.#boardtasks= this.#boardtasks.filter(task=>task.status!=='basket');
+        this._notifyObservers();
+        return this.#boardtasks;
+    }
+    
+    updateTaskStatus(taskId, newStatus){
+        const task= this.#boardtasks.find(task => task.id === taskId)
+        if (task) {
+            console.log(`task status: ${task.status} new status ${newStatus}`);
+            task.status=newStatus.status_title;
+            this._notifyObservers();
+        }
     }
     addObserver(observer){
         this.#observers.push(observer);

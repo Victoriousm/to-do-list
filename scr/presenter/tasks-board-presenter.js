@@ -23,8 +23,8 @@ export default class TasksBoardPresenter {
  
   init() {
      this.#boardTasks=[...this.#tasksModel.tasks];
-    render(this.#tasksBoardComponent, this.#boardContainer);
-    this.#renderBoard();
+    render(this.#tasksBoardComponent, this.#boardContainer);//renders empty task board
+    this.#renderBoard();//adds tasks and lists
     
   
   }
@@ -37,15 +37,12 @@ export default class TasksBoardPresenter {
    for (let status in Status) {
      this.status_title=Status[status];
      this.label=StatusLabel[`${this.status_title}`];
-     console.log(`${this.status_title} label ${this.label}`);
-     const tasksListComponent = new TaskListComponent({task_status:{status_title:this.status_title,label:this.label}});
-     console.log(` ${tasksListComponent.status}`);
+     const tasksListComponent = new TaskListComponent({task_status:{status_title:this.status_title,label:this.label}, onTaskDrop: this.#handleTaskDrop.bind(this)});
      render(tasksListComponent, this.#tasksBoardComponent.element);
      const tasksForStatus=this.#tasksModel.getTasksByStatus(this.status_title);
-     console.log(` ${tasksForStatus.length} ${status}`);
      if (tasksForStatus.length==0) {
        const emptyTaskComponent=new EmptyTaskComponent();
-       render(emptyTaskComponent,tasksListComponent.element);
+       render(emptyTaskComponent,tasksListComponent.element);//renders the empty task
      }else{
      for (let j = 0; j < tasksForStatus.length; j++) {
          
@@ -56,21 +53,21 @@ export default class TasksBoardPresenter {
     
    }
    if (this.status_title=="basket") {
-     console.log("Why not");
      this.#renderResetButton(tasksListComponent.element);
    }
  }
   }
+  #handleTaskDrop(taskId,newStatus){
+    this.#tasksModel.updateTaskStatus(taskId,newStatus);
+   }
   #renderResetButton(container){
-   console.log("Clear board container");
    const cleanupComponent= new ClearButtonComponent({onClick:this.#clearAllTasks.bind(this)});
    render(cleanupComponent, container);
   }
- 
+  
   #clearAllTasks(){
-   console.log("Clear board");
-   this.#tasksModel.tasks=[];
-   this.#clearBoard();
+   this.#tasksModel.tasks=this.#tasksModel.clearTasks();
+  // this.#clearBoard();
   }
  
   createTask(){
@@ -78,7 +75,7 @@ export default class TasksBoardPresenter {
    if (!taskTitle) {
      return;
    }
-   const newTask=this.#tasksModel.addTask(taskTitle);
+   const newTask=this.#tasksModel.addTask(taskTitle);//function that adds a task to the list
  
    document.querySelector('#add-task').value='';
   }

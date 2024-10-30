@@ -7,7 +7,7 @@ function createCleanUpButton(){
         `);
 }
 
-export default class CleanUpButtonComponent extends AbstractComponent{
+export default class ClearButtonComponent extends AbstractComponent{
     #handleClick=null;
 
   #clickHandler=(evt)=>{
@@ -17,7 +17,7 @@ export default class CleanUpButtonComponent extends AbstractComponent{
 
   constructor({onClick}){
     super();
-    console.log("lets clean up")
+    
     this.#handleClick=onClick;
     this.element.addEventListener('click', this.#clickHandler);
   }

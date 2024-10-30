@@ -15,16 +15,6 @@ export default class TaskBoardComponent extends AbstractComponent{
   }
 
 
-  // get element() {
-  //   if (!this.element) {
-  //     this.element = createElement(this.getTemplate());
-  //   }
-
-  //   console.log(this.element)
-  //   return this.element;
-  // }
-
-
   removeElement() {
     this.element = null;
   }

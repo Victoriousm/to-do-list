@@ -18,20 +18,21 @@ export default class TaskComponent extends AbstractComponent{
   constructor({task}){
     super();
     this.task=task;
+    this.#afterCreateElement();
   }
   get template() {
     return createTaskComponentTemplate(this.task);
   }
+  #afterCreateElement(){
+    this.#makeTaskDraggable();
+  }
+  #makeTaskDraggable(){
+    this.element.setAttribute(`draggable`,true);
 
-
-  // get element() {
-  //   if (!this.element) {
-  //     this.element = createElement(this.getTemplate());
-  //   }
-
-
-  //   return this.element;
-  // }
+    this.element.addEventListener('dragstart',(event)=>{
+      event.dataTransfer.setData('text/plain',this.task.id);
+    });
+  }
 
 
   removeElement() {

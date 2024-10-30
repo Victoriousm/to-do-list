@@ -9,8 +9,8 @@ const bodyContainer = document.querySelector('.board-app');
 const formContainer = document.querySelector('.add-task');
 const tasksBoardContainer = document.querySelector('.taskboard');
 const tasksModel=new TasksModel();
-const tasksBoardPresenter = new TasksBoardPresenter({boardContainer: tasksBoardContainer,tasksModel});
-const formAddTaskComponent=new FormAddTaskComponent({onClick:handleNewTaskButtonClick})
+const tasksBoardPresenter = new TasksBoardPresenter({boardContainer: tasksBoardContainer,tasksModel});//creates it to be rendered
+const formAddTaskComponent=new FormAddTaskComponent({onClick:handleNewTaskButtonClick})//does the same here
 
 render(new HeaderComponent(), bodyContainer, RenderPosition.BEFOREBEGIN);
 render(formAddTaskComponent, formContainer);
