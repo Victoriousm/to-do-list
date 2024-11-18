@@ -33,7 +33,7 @@ export const tasks=[
     {
         'id':`8`,
         'title':`Погадить кота`,
-        'status':`basketgit`
+        'status':`basket`
     },
     {
         'id':`9`,

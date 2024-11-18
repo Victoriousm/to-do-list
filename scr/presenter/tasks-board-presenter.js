@@ -13,6 +13,7 @@ export default class TasksBoardPresenter {
    #boardContainer=null;
    #tasksModel=null;
    #boardTasks=[];
+   #cleanupComponent=null;
  
   constructor({boardContainer, tasksModel}) {
     this.#boardContainer = boardContainer;
@@ -21,10 +22,13 @@ export default class TasksBoardPresenter {
   }
  
  
-  init() {
+  async init() {
+    await this.#tasksModel.init();
      this.#boardTasks=[...this.#tasksModel.tasks];
-    render(this.#tasksBoardComponent, this.#boardContainer);//renders empty task board
-    this.#renderBoard();//adds tasks and lists
+     console.log(`after init: ${this.#boardTasks}`)
+     this.#clearBoard();
+     render(this.#tasksBoardComponent, this.#boardContainer);
+     this.#renderBoard();
     
   
   }
@@ -57,9 +61,15 @@ export default class TasksBoardPresenter {
    }
  }
   }
-  #handleTaskDrop(taskId,newStatus){
-    this.#tasksModel.updateTaskStatus(taskId,newStatus);
+
+  async #handleTaskDrop(taskId,newStatus){
+    try {
+      await this.#tasksModel.updateTaskStatus(taskId, newStatus);
+    } catch (error) {
+      console.error('Error when uploading the status of the task', error);
+    }
    }
+
   #renderResetButton(container){
    const cleanupComponent= new ClearButtonComponent({onClick:this.#clearAllTasks.bind(this)});
    render(cleanupComponent, container);
@@ -70,19 +80,46 @@ export default class TasksBoardPresenter {
   // this.#clearBoard();
   }
  
-  createTask(){
-   const taskTitle=document.querySelector('#add-task').value.trim();
-   if (!taskTitle) {
-     return;
+  async createTask(){
+    const taskTitle=document.querySelector('#add-task').value.trim();
+    if (!taskTitle) {
+      return;
+    }
+    try{
+    await this.#tasksModel.addTask(taskTitle);
+    document.querySelector('#add-task').value='';
+    }catch(error){
+      console.error("Error when creating the exercise",error)
+    }
    }
-   const newTask=this.#tasksModel.addTask(taskTitle);//function that adds a task to the list
- 
-   document.querySelector('#add-task').value='';
-  }
   #handleModelChange(){
    this.#clearBoard();
    this.#renderBoard();
   }
+
+  #handleModelEvent(event, payload){
+    switch (event) {
+      case UserAction.ADD_TASK:
+      case UserAction.UPDATE_TASK:
+      case UserAction.DELETE_TASK:
+        this.#clearBoard();
+        this.#renderBoard();
+        if (this.#cleanupComponent) {
+          this.#cleanupComponent.toggleDisabled(!this.#tasksModel.hasBasketTasks());
+        }
+        break;
+    }
+    
+   }
+  
+  async #handleClearBasketClick(){
+    try {
+      await this.#tasksModel.clearBasketTasks();
+    } catch (error) {
+      console.error("Error when cleaning the basket")
+    }
+  }
+
   #clearBoard(){
    this.#tasksBoardComponent.element.innerHTML='';
   }
