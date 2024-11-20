@@ -1,6 +1,5 @@
 import {tasks} from '../mock/task.js';
 import generateIdentificationNumber from '../utils.js'
-//import { UpdateType, UserAction } from '../const.js';
 import Observable from '../framework/observable.js';
 import { UpdateType, UserAction } from '../constant.js';
 
@@ -14,7 +13,6 @@ export default class TasksModel extends Observable{
         this.#tasksApiService=tasksApiService;
 
         this.#tasksApiService.tasks.then((tasks)=>{
-            console.log(tasks);
         })
     }
 

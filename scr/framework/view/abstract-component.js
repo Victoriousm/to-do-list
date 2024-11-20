@@ -2,7 +2,7 @@ import { createElement } from "../render.js";
 
 
 
-//parent component
+
 export class AbstractComponent {
    #element = null;
    constructor() {

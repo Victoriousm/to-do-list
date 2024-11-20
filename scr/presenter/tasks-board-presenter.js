@@ -7,7 +7,6 @@ import ClearButtonComponent from "../view/reset-button-component.js";
 import EmptyTaskComponent from '../view/empty-tasks-component.js';
 
 import TaskPresenter from './task-presenter.js';
-
 export default class TasksBoardPresenter {
   #tasksBoardComponent = new TaskBoardComponent()
    #boardContainer=null;
@@ -25,18 +24,19 @@ export default class TasksBoardPresenter {
   async init() {
     await this.#tasksModel.init();
      this.#boardTasks=[...this.#tasksModel.tasks];
-     console.log(`after init: ${this.#boardTasks}`)
      this.#clearBoard();
-     render(this.#tasksBoardComponent, this.#boardContainer);
+     render(this.#tasksBoardComponent,this.#boardContainer);
      this.#renderBoard();
     
   
   }
+
   #renderTask(task,container){
    const taskComponent=new TaskComponent({task});
    const taskPresenter= new TaskPresenter({taskListContainer:container});
    taskPresenter.init(task)
   }
+  
   #renderBoard(){
    for (let status in Status) {
      this.status_title=Status[status];
@@ -46,7 +46,7 @@ export default class TasksBoardPresenter {
      const tasksForStatus=this.#tasksModel.getTasksByStatus(this.status_title);
      if (tasksForStatus.length==0) {
        const emptyTaskComponent=new EmptyTaskComponent();
-       render(emptyTaskComponent,tasksListComponent.element);//renders the empty task
+       render(emptyTaskComponent,tasksListComponent.element);
      }else{
      for (let j = 0; j < tasksForStatus.length; j++) {
          
@@ -62,6 +62,7 @@ export default class TasksBoardPresenter {
  }
   }
 
+  
   async #handleTaskDrop(taskId,newStatus){
     try {
       await this.#tasksModel.updateTaskStatus(taskId, newStatus);
@@ -77,7 +78,7 @@ export default class TasksBoardPresenter {
   
   #clearAllTasks(){
    this.#tasksModel.tasks=this.#tasksModel.clearTasks();
-  // this.#clearBoard();
+
   }
  
   async createTask(){
@@ -92,6 +93,7 @@ export default class TasksBoardPresenter {
       console.error("Error when creating the exercise",error)
     }
    }
+  
   #handleModelChange(){
    this.#clearBoard();
    this.#renderBoard();

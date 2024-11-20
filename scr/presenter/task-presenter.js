@@ -1,6 +1,6 @@
 import TaskComponent from "../view/task-component.js";
 import {render} from "../framework/render.js"
-import generateIdentificationNumber from '../utils.js'
+
 
 export default class TaskPresenter{
     #taskListContainer = null;
@@ -12,7 +12,6 @@ export default class TaskPresenter{
     }
     init(task){
         this.#task=task;
-      // task.id=generateIdentificationNumber();
         this.#taskComponent=new TaskComponent({task:this.#task})
         render(this.#taskComponent,this.#taskListContainer)
         

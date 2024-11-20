@@ -22,7 +22,6 @@ export default class FormAddTaskComponent  extends AbstractComponent{
 
   constructor({onClick}){
     super();
-    console.log("Feels great")
     this.#handleClick=onClick;
     this.element.addEventListener('submit', this.#clickHandler);
   }

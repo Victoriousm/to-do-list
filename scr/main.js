@@ -14,8 +14,8 @@ const tasksModel=new TasksModel({
    tasksApiService: new TasksApiService(END_POINT)
 });
 
-const tasksBoardPresenter = new TasksBoardPresenter({boardContainer: tasksBoardContainer,tasksModel});//creates it to be rendered
-const formAddTaskComponent=new FormAddTaskComponent({onClick:handleNewTaskButtonClick})//does the same here
+const tasksBoardPresenter = new TasksBoardPresenter({boardContainer: tasksBoardContainer,tasksModel});
+const formAddTaskComponent=new FormAddTaskComponent({onClick:handleNewTaskButtonClick})
 
 render(new HeaderComponent(), bodyContainer, RenderPosition.BEFOREBEGIN);
 render(formAddTaskComponent, formContainer);
