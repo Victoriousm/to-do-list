@@ -2,7 +2,7 @@ import TaskListComponent from '../view/task-list-component.js';
 import TaskComponent from '../view/task-component.js';
 import TaskBoardComponent from '../view/task-board-component.js';
 import {render} from '../framework/render.js';
-import { Status,StatusLabel } from '../constant.js';
+import { Status,StatusLabel,UserAction } from '../constant.js';
 import ClearButtonComponent from "../view/reset-button-component.js";
 import EmptyTaskComponent from '../view/empty-tasks-component.js';
 
@@ -17,7 +17,7 @@ export default class TasksBoardPresenter {
   constructor({boardContainer, tasksModel}) {
     this.#boardContainer = boardContainer;
     this.#tasksModel=tasksModel;
-    this.#tasksModel.addObserver(this.#handleModelChange.bind(this));
+    this.#tasksModel.addObserver(this.#handleModelEvent.bind(this));
   }
  
  
@@ -72,7 +72,8 @@ export default class TasksBoardPresenter {
    }
 
   #renderResetButton(container){
-   const cleanupComponent= new ClearButtonComponent({onClick:this.#clearAllTasks.bind(this)});
+   const cleanupComponent= new ClearButtonComponent({
+    onClick:this.#handleClearBasketClick.bind(this)});
    render(cleanupComponent, container);
   }
   

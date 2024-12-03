@@ -13,7 +13,7 @@ export default class TasksModel extends Observable{
         this.#tasksApiService=tasksApiService;
 
         this.#tasksApiService.tasks.then((tasks)=>{
-        })
+        });
     }
 
     async init(){
@@ -38,7 +38,7 @@ export default class TasksModel extends Observable{
     }
 
     clearTasks(){
-        this.#boardtasks=this.#boardtasks.filter(task=>task.status!=='basket');
+        this.#boardtasks=this.#boardtasks.filter((task)=>task.status!=='basket');
         this._notify(UpdateType.DELETE_TASK);
         return this.#boardtasks;
     }
@@ -77,16 +77,16 @@ export default class TasksModel extends Observable{
     }
 
     deleteTask(taskId){
-        this.#boardtasks=this.#boardtasks.filter(task=>task.id!==taskId);
+        this.#boardtasks=this.#boardtasks.filter((task)=>task.id!==taskId);
         this._notify(UserAction.DELETE_TASK, {id:taskId});
     }
 
     async clearBasketTasks(){
-        const basketTasks=this.#boardtasks.filter(task=>task.status==='basket');
+        const basketTasks=this.#boardtasks.filter((task)=>task.status==='basket');
 
         try {
-            await Promise.all(basketTasks.map(task=>this.#tasksApiService.deleteTask(task.id)));
-            this.#boardtasks=this.#boardtasks.filter(task=>task.status!=='basket');
+            await Promise.all(basketTasks.map((task)=>this.#tasksApiService.deleteTask(task.id)));
+            this.#boardtasks=this.#boardtasks.filter((task)=>task.status!=='basket');
             this._notify(UserAction.DELETE_TASK,{status:'basket'});
         } catch (error) {
            throw error;
@@ -94,7 +94,7 @@ export default class TasksModel extends Observable{
     }
 
     hasBasketTasks(){
-        return this.#boardtasks.some(task=>task.status==='basket');
+        return this.#boardtasks.some((task)=>task.status==='basket');
     }
 
 
