@@ -57,8 +57,16 @@ export default class TasksBoardPresenter {
     
    }
    if (this.status_title=="basket") {
-     this.#renderResetButton(tasksListComponent.element);
-   }
+    const basketItems=this.#tasksModel.getTasksByStatus("basket")
+    if (basketItems.length==0) {
+      //console.log("Okayyyy")
+      this.#renderResetButton(tasksListComponent.element,false);
+    }else{
+      this.#renderResetButton(tasksListComponent.element,true);
+    }
+   // //("Why not");
+    
+  }
  }
   }
 
@@ -71,9 +79,9 @@ export default class TasksBoardPresenter {
     }
    }
 
-  #renderResetButton(container){
+  #renderResetButton(container,active){
    const cleanupComponent= new ClearButtonComponent({
-    onClick:this.#handleClearBasketClick.bind(this)});
+    onClick:this.#handleClearBasketClick.bind(this),active:active});
    render(cleanupComponent, container);
   }
   

@@ -131,6 +131,11 @@ ul li{
     cursor: allowed;
    
 }
+.cancel:disabled{
+    cursor: not-allowed;
+    background-color: beige;
+    color:aliceblue
+}
 
 
 
